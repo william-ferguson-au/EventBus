@@ -457,11 +457,7 @@ public class EventBus {
                 invokeSubscriber(subscription, event);
                 break;
             case MainThread:
-                if (isMainThread) {
-                    invokeSubscriber(subscription, event);
-                } else {
-                    mainThreadPoster.enqueue(subscription, event);
-                }
+                mainThreadPoster.enqueue(subscription, event);
                 break;
             case BackgroundThread:
                 if (isMainThread) {
